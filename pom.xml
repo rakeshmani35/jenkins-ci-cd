@@ -11,6 +11,7 @@
 	<groupId>com.devops</groupId>
 	<artifactId>JenkinsCiCdApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>JenkinsCiCdApplication</name>
 	<description>JenkinsCiCdApplication</description>
 	<properties>
