@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-
+       // CI steps: checkout and build (compile, test, build)
         stage("SCM checkout"){
             steps{
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rakeshmani35/jenkins-ci-cd.git']])
@@ -21,11 +21,20 @@ pipeline {
             }
         }
 
-        stage("deploy to tomcat container"){
-            steps{
-                deploy adapters: [tomcat9(credentialsId: 'tomcat-pwd', path: '', url: 'http://localhost:9090/')], contextPath: 'jenkinsCiCd', war: '**/*.war'
-            }
-        }
+       // CD steps: deploy to either "tomact container OR docker hub"
+        //stage("deploy to tomcat container"){
+        //    steps{
+        //        deploy adapters: [tomcat9(credentialsId: 'tomcat-pwd', path: '', url: 'http://localhost:9090/')], contextPath: 'jenkinsCiCd', war: '**/*.war'
+        //    }
+        //}
+
+         stage("Build Docker Image"){
+                    steps{
+                        script{
+                            bat 'docker build -t rroshan2020/spring-jenkins-docker:1.0 .'
+                        }
+                    }
+         }
     }
 
     post {
