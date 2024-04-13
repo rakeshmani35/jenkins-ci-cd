@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment{
-        APP_NAME - "Spring-docker-cicd"
+        APP_NAME = "Spring-docker-cicd"
         RELEASE_NO = "1.0.0"
         DOCKER_USER = "rroshan2020"
         IMAGE_NAME = "${DOCKER_USER}"+"/"+"${APP_NAME}"
